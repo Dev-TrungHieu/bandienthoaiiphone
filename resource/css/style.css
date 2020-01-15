@@ -1,0 +1,51 @@
+.menu-user {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    z-index: 9;
+}
+
+.menu-user ul li {
+    height: 70px;
+    width: 90px;
+    background: rgb(238, 231, 231);
+}
+
+.menu-user ul li:hover {
+    background: rgb(226, 35, 35);
+}
+
+.menu-user ul li:hover a {
+    color: white;
+}
+
+.infomation li:nth-child(1) {
+    padding: 10px 15px;
+    border: 1px solid #333;
+}
+
+.infomation li:nth-child(2) {
+    padding: 10px 15px;
+    border: 1px solid #333;
+    /* background-color: rgb(105, 190, 224); */
+}
+
+.infomation li:nth-child(3) {
+    padding: 10px 15px;
+    border: 1px solid #333;
+    /* background-color: rgb(98, 221, 86); */
+}
+
+.infomation li a {
+    font-size: 15px;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.show {
+    visibility: visible;
+}

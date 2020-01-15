@@ -1,0 +1,202 @@
+<% include header %>
+<!-- Content page informaton -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div style="height: 50px;"></div>
+            <ul class="infomation">
+                <li><a href="/information">Thông tin người dùng</a></li>
+                <li style="background-color: rgb(224, 105, 105);"><a href="#">Lịch sử đặt hàng</a></li>
+                <li><a href="/changepassword">Đổi mật khẩu</a></li>
+            </ul>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-8">
+            <div style="height: 50px;"></div>
+            <h4>Lịch sử đặt hàng</h4>
+            <table class="table mt-15">
+                <thead>
+                    <tr style="background-color: rgb(72, 78, 78); color: white;">
+                        <th scope="col">#</th>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Tình trạng</th>
+                        <th scope="col">Tổng số tiền</th>
+                        <th scope="col">Ngày</th>
+                        <th scope="col">Hủy đơn</th>
+                        <th scope="col">Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% order.forEach( (i, index) => { %>
+                    <tr>
+                        <th scope="row">
+                            <%= index + 1 %>
+                        </th>
+                        <td>
+                            <%= i._id %>
+                        </td>
+                        <td><% if( i.status == 1 ) { %>
+                            Đã duyệt
+                            <% } else { %>
+                            Chờ duyệt
+                            <% } %></td>
+                        <td>
+                            <%= i.saleTotal %>
+                        </td>
+                        <td>
+                            <%= i.date.getDate() %> /
+                            <%= i.date.getMonth() + 1 %>/
+                            <%= i.date.getFullYear() %>
+                        </td>
+                        <td>
+                            <% if( i.status == 0) { %>
+
+                            <button type="button" style="margin-top: -8px" class="btn btn-primary" data-toggle="modal"
+                                data-target="#abc<%=  i._id %>">
+                                Hủy
+                            </button>
+                            <% } %>
+                        </td>
+                        <td>
+                            <a target="_blank" style="padding: 10px 15px; background-color: wheat;"
+                                href="/orderhistory/<%= i._id %>">View</a> </td>
+                    </tr>
+                </tbody>
+                <div class="modal fade" id="abc<%= i._id %>" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 style="color: #333;" class="modal-title" id="exampleModalLongTitle">
+                                    Thông báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div style="color: red;" class="modal-body">
+                                Bạn muốn hủy đơn hàng ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <div class="btn btn-primary">
+                                    <a style="color: white" href="/deleteOrder/<%= i._id %>">Hủy đơn</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+
+            </table>
+        </div>
+    </div>
+    <div style="height: 50px;"></div>
+</div>
+
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer_area clearfix">
+    <div class="container">
+        <div class="row">
+            <!-- Single Widget Area -->
+            <div class="col-12 col-md-6">
+                <div class="single_widget_area d-flex mb-30">
+                    <!-- Logo -->
+                    <div class="footer-logo mr-50">
+                        <a href="#"><img src="/resource/img/core-img/logo2.png" alt=""></a>
+                    </div>
+                    <!-- Footer Menu -->
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="/shop/product">Sho p</a></li>
+                            <li><a href="/shop/blog">Blog</a></li>
+                            <li><a href="/shop/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Widget Area -->
+            <div class="col-12 col-md-6">
+                <div class="single_widget_area mb-30">
+                    <ul class="footer_widget_menu">
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                        <li><a href="#">Shipping and Delivery</a></li>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-end">
+            <!-- Single Widget Area -->
+            <div class="col-12 col-md-6">
+                <div class="single_widget_area">
+                    <div class="footer_heading mb-30">
+                        <h6>Subscribe</h6>
+                    </div>
+                    <div class="subscribtion_form">
+                        <form action="#" method="post">
+                            <input type="email" name="mail" class="mail" placeholder="Your email here">
+                            <button type="submit" class="submit"><i class="fa fa-long-arrow-right"
+                                    aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Widget Area -->
+            <div class="col-12 col-md-6">
+                <div class="single_widget_area">
+                    <div class="footer_social_area">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i
+                                class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i
+                                class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i
+                                class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i
+                                class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+
+    </div>
+</footer>
+<!-- ##### Footer Area End ##### -->
+
+<!-- jQuery (Necessary for All JavaScript Plugins) -->
+<script src="/resource/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="/resource/js/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="/resource/js/bootstrap.min.js"></script>
+<!-- Plugins js -->
+<script src="/resource/js/plugins.js"></script>
+<!-- Classy Nav js -->
+<script src="/resource/js/classy-nav.min.js"></script>
+<!-- Active js -->
+<script src="/resource/js/active.js"></script>
+
+</body>
+
+</html>

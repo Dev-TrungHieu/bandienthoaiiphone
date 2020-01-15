@@ -1,0 +1,150 @@
+<% include header_admin %>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 pd-3">
+                        <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);"
+                                class="fa fa-wpexplorer " aria-hidden="true"></i> Sản phẩm
+                            <a class="btn-primary category_add" href="/admin/product/add">Thêm <sup><i class="fa fa-plus"
+                                        aria-hidden="true"></i></sup></a>
+                        </h4>
+                        <p style="color: #333;">Chọn loại
+                        </p>
+                        <div>
+                            <form name="search">
+                                <select style="width: 300px;" name="categoryId" id="sl"
+                                    class="form-control pull-left mb-2 mr-2">
+                                    <option style="color: #333;" value="all">Tất cả</option>
+                                    <% dataCategory.forEach(function(i) { %>
+                                    <% if(i._id == categoryId ){ %>
+                                    <option selected style="color: #333;" value="<%= i._id %>"><%= i.name %></option>
+                                    <% }else { %>
+                                    <option style="color: #333;" value="<%= i._id %>"><%= i.name %></option>
+                                    <% } %>
+                                    <% }) %>
+                                </select>
+                                <button hidden type="submit" class="btn btn-success">Search</button>
+                            </form>
+                        </div>
+
+                        <div class="table">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;" scope="col">#</th>
+                                        <th style="width: 10%;" scope="col">Tên</th>
+                                        <th style="width: 20%;" scope="col">Ảnh</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th style="width: 7%;" scope="col">Mã</th>
+                                        <th style="width: 10%;" scope="col">Ngày</th>
+                                        <th style="width: 10%;" scope="col">Cập nhập</th>
+                                        <th style="width: 7%; padding-left: 25px;" scope="col">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% products.forEach((i, index) => { %>
+                                    <tr>
+                                        <th scope="row"><%= index + 1 %></th>
+                                        <td><%= i.name %></td>
+                                        <td>
+                                            <% i.images.forEach(function (i) { %>
+                                            <img style="width: 50px;" src="\<%= i %>" alt="none">
+                                            <% }) %>
+                                        </td>
+                                        <td><%= i.count %></td>
+                                        <td><%= i.description.slice(0,50) %> ...</td>
+                                        <td><%= i.key %></td>
+                                        <td><%= i.date.getDate() %>/ <%= i.date.getMonth() +1 %> / <%= i.date.getFullYear() %> </td>
+                                        <td>
+                                            <a style="margin-left: 20px;" href="/admin/product/update/<%= i._id %>"><i
+                                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#abc<%=  i._id %>">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Modal -->
+                        <% products.forEach(function(i, index) { %>
+                        <div class="modal fade" id="abc<%= i._id %>" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 style="color: #333;" class="modal-title" id="exampleModalLongTitle">Notify
+                                            </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div style="color: red;" class="modal-body">
+                                        Are you sure delete it ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <!-- <button type="button" class="btn btn-primary">Confirm</button> -->
+                                        <a href="/admin/product/delete/<%= i._id %>" class="btn btn-primary">Confirm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <!-- end modal -->
+
+                        <nav class="pull-right" aria-label="...">
+                            <ul class="pagination pull-right" style="margin-top: 10px;">
+                                <li class="page-item disabled">
+                                    <% if(page == 1){ %>
+                                    <span class="page-link">Previous</span>
+                                    <% } %>
+                                </li>
+                                <li class="page-item">
+                                    <% if(page !==1){ %>
+                                    <a class="page-link" href="?page=<%= page - 1%>">Previous</a>
+                                    <% } %>
+                                </li>
+                                <% for( i = 1; i <  maxPage+ 1 ; i++){ %>
+                                <% if(maxPage == 1) { %>
+                                <li class="page-item active"><a class="page-link" href="?page=<%= i %>"> <%= i %> </a>
+                                </li>
+                                <% } %>
+                                <% if(maxPage !== 1){ %>
+                                <% if(page == i){ %>
+                                <li class="page-item active"><a class="page-link" href="?page=<%= i %>"> <%= i %> </a>
+                                </li>
+                                <% }else{ %>
+                                <li class="page-item"><a class="page-link" href="?page=<%= i %>"> <%= i %> </a></li>
+                                <% } %>
+                                <% } %>
+                                <% } %>
+                                <li class="page-item">
+                                    <% if(page < maxPage){ %>
+                                    <a class="page-link" href="?page=<%= page + 1%>">Next</a>
+                                    <% } %>
+
+                                </li>
+                                <li class="page-item disabled">
+                                    <% if(page == maxPage) { %>
+                                    <a class="page-link" href="?page=<%= page + 1%>">Next</a>
+                                    <% } %>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

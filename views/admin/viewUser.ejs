@@ -1,0 +1,66 @@
+<% include header_admin %>
+<div class="content">
+    <div class="row">
+        <div class="col-12 pd-3">
+            <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);" class="fa fa-shopping-basket"
+                    aria-hidden="true"></i> Danh sách đơn hàng đã đặt</h4>
+            <div>
+                <p style="color: black;">Mã người dùng : <span style="color: red;">
+                        <%= user[0]._id %>
+                    </span>
+                </p>
+                <p style="color: black;">Tên người dùng : <span style="color: red;">
+                        <%= user[0].fullname %>
+                    </span>
+                </p>
+                <p style="color: black;">Số đơn đã mua : <span style="color: red;">
+                    <%= length %>
+                </span>
+            </p>
+            </div>
+            <div class="table">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th style="width: 2%;" scope="col">#</th>
+                            <th scope="col">Mã đơn hàng</th>
+                            <th style="width: 10%;" scope="col">Trạng thái</th>
+                            <th scope="col">Ngày</th>
+                            <th scope="col">Tổng</th>
+                            <th scope="col">Tiền phải trả</th>
+                            <th scope="col">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% orders.forEach(function(i, index) { %>
+                        <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td><%= i._id %></td>
+                            <td><% if( i.status == 1 ) { %>
+                                Đã duyệt
+                                <% } else { %>
+                                Chờ duyệt
+                                <% } %></td>
+                            <td><%= i.date.getDate() %>/<%= i.date.getMonth() + 1 %>/<%= i.date.getFullYear() %></td>
+                            <td><%= i.total %></td>
+                            <td><%= i.saleTotal %></td>
+                            <td>
+                                <a target="_blank" href="/admin/order/view/<%= i._id %>" class="btn btn-warning">Xem
+                                    đơn</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</header>
+
+</body>
+
+</html>

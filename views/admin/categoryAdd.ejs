@@ -1,0 +1,36 @@
+<% include header_admin %>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 pd-3">
+                        <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);"
+                                class="fa fa-pencil-square-o     " aria-hidden="true"></i> Thêm mới danh mục                        </h4>
+                        <form action="/admin/category/add" method="POST">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Name Category"
+                                        name="nameCategory" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Key Name"
+                                        name="keyCategory" required="required">
+                                </div>
+                               
+                                <div class="col-12 mt-3 mb-3">
+                                    <textarea class="form-control" rows="5" id="comment"
+                                        placeholder="Description" name="descriptionCategory"></textarea>
+                                </div>
+                                <div class="col-12 mt-3 mb-3">
+                                    <button class="btn btn-primary" type="submit">Tạo mới</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </header>
+  
+</body>
+
+</html>

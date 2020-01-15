@@ -1,0 +1,92 @@
+<% include header_admin %>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 pd-3">
+                        <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);" class="fa fa-book"
+                                aria-hidden="true"></i> Blogs
+                        </h4>
+                        <div class="col-12" style="background: #333;">
+                            <div class="row mt-1">
+                                <div class="col-6 mt-1">
+                                    <h5>List Order</h5>
+                                    <div class="table">
+                                        <table class="table table-dark">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 2%;" scope="col">#</th>
+                                                    <th scope="col">Blog Name</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Content_01</th>
+                                                    <th scope="col">Content_02</th>
+                                                    <th scope="col">Detail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% blogs.forEach(function(i, index) { %>
+                                                <tr>
+                                                    <th scope="row"><%= index %></th>
+                                                    <td><%= i.title %></td>
+                                                    <td><%= i.date.getDay() + "/" + (i.date.getMonth()+1) + "/" + i.date.getFullYear() %>
+                                                    </td>
+                                                    <td><%= i.content1.slice(0,30) + "..." %></td>
+                                                    <td><%= i.content2.slice(0,30) + "..." %></td>
+                                                    <td><a target="_blank" href="/shop/blogs/<%= i._id %>">View</a></td>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-6 mt-1" style="height: 605px;">
+                                    <h5>Create New Blank</h5>
+                                    <form action="/admin/blog/add" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="">Title</label>
+                                            <input type="text" name="title" id="" class="form-control" placeholder=""
+                                                aria-describedby="helpId" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Content_01</label>
+                                            <textarea type="text" name="content_01" id="editor1" class="ckeditor form-control"
+                                                placeholder="" aria-describedby="helpId" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Content_02</label>
+                                            <textarea type="text" name="content_02" id="" class="form-control"
+                                                placeholder="" aria-describedby="helpId" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-file">
+                                                <input type="file" name="file" class="custom-file-input" id="customFile"
+                                                    required>
+                                                <label class="custom-file-label" for="customFile">Choose
+                                                    file</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Create</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    <script src="/resource/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.config.entities_latin = false
+        CKEDITOR.config.language = 'vi'
+        CKEDITOR.config.uiColor = '#F7B42C';
+    </script>
+</body>
+
+</html>

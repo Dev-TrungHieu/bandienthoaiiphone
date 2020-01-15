@@ -1,0 +1,56 @@
+<% include header_admin %>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 pd-3">
+                        <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);" class="fa fa-pencil-square-o     " aria-hidden="true"></i> Cập nhập sản phẩm </h4>
+                        <form action="/admin/product/update" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-12 mt-3 mb-1">
+                                    <input hidden type="text" name="id" value="<%= id %>">
+                                    <label for="sl" style="color: #333;">Danh mục</label>
+                                    <select name="categoryId" id="sl" class="form-control" required="required">
+                                        <% dataCategory.forEach(function(i) { %>
+                                             <% if(i._id == product[0].categoryId) { %>
+                                                <option style="color: #333;" value="<%= i._id %>" selected><%= i.name %></option>
+                                            <% } else { %>
+                                                <option style="color: #333;" value="<%= i._id %>"><%= i.name %></option>
+                                           <% } %>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Name Product" name="nameProduct" value="<%= product[0].name %>" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Cost Product" name="costProduct" value="<%= product[0].cost %>" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Count Product" name="countProduct" value="<%= product[0].count %>" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Key Name Product" name="keyProduct" value="<%= product[0].key %>" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Sale Product" value="<%= product[0].sale %>" name="saleProduct">
+                                </div>
+                                <div class="col-12 mt-3 mb-1">
+                                    <input multiple type="file" class="form-control" name="fileProduct">
+                                </div>
+                                <div class="col-12 mt-3 mb-3">
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="<%= product[0].description %>" autofocus="{<%= product[0].description %>}" name="descriptionProduct"></textarea>
+                                </div>
+                                <div class="col-12 mt-3 mb-3">
+                                    <button class="btn btn-primary" type="submit">Cập nhập</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>

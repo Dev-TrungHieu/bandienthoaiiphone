@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resource/admin/css/style.css">
+    <link rel="stylesheet" href="/resource/admin/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/resource/admin/js/code.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="menu_admin">
+                <h4><a href="/">ESSENCE</a></h4>
+                <ul>
+                    <li><a href="/admin/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                    <li><a href="/admin/category"><i class="fa fa-cogs" aria-hidden="true"></i> Category</a></li>
+                    <li><a href="/admin/product"><i class="fa fa-wpexplorer" aria-hidden="true"></i> Product</a></li>
+                    <li><a href="/admin/blog"><i class="fa fa-file-text-o" aria-hidden="true"></i> Blog</a></li>
+                    <li><a href="/admin/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+                    <li><a href="/admin/notify"><i class="fa fa-signal" aria-hidden="true"></i> Notify</a></li>
+                </ul>
+            </div>
+            <div class="close_menu">
+                <p><i class="fa fa-caret-left" aria-hidden="true"></i></p>
+            </div>
+            <div class="nav_admin">
+                <div class="nav_user">
+                    <div class="user">
+                        <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Trung Hieu</a>
+                    </div>
+                    <div class="log-out">
+                        <a href="/admin/outLogin"><i class="fa fa-sign-out" aria-hidden="true"> Sign Out</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12 pd-3">
+                        <h4 style="color: #333; padding-top: 5px;"><i style="color: rgb(44, 49, 46);" class="fa fa-pencil-square-o     " aria-hidden="true"></i> Add </h4>
+                        <form action="/admin/product/add" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-12 mt-3 mb-1">
+                                    <label for="sl" style="color: #333;">Category</label>
+                                    <select name="categoryId" id="sl" class="form-control" required="required">
+                                        <% dataCategory.forEach(function(i) { %>
+                                        <option style="color: #333;" value="<%= i._id %>"><%= i.name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Name Product" name="nameProduct" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Cost Product" name="costProduct" min="0" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Count Product" name="countProduct" min="0" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Key Name Product" name="keyProduct" required="required">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" placeholder="Sale Product" name="saleProduct" min="0" max="100">
+                                </div>
+                                <div class="col-12 mt-3 mb-1">
+                                    <label style="color: #333" class="btn btn-success" for="file">Choose a file</label>
+                                </div>
+                                <input multiple hidden min="2" id="file" type="file" class="form-control" name="fileProduct">
+                                <div class="col-12 mt-3 mb-3">
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Description" name="descriptionProduct"></textarea>
+                                </div>
+                                <div class="col-12 mt-3 mb-3">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>

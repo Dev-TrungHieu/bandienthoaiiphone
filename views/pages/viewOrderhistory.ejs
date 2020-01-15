@@ -1,0 +1,170 @@
+<% include header %>
+    <!-- Content page informaton -->
+    <div class="container">
+        <div class="row">
+            <div style="height: 50px;"></div>
+            <h4>Chi tiết đơn hàng đã đặt</h4>
+            <table class="table mt-15">
+                <thead>
+                    <tr style="background-color: rgb(72, 78, 78); color: white;">
+                        <th style="width: 20%;" scope="col">Tên sản phẩm</th>
+                        <th style="width: 10%;" scope="col">Hình ảnh</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Tổng sô tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% detail.forEach( (i, index) => { %>
+                        <% order.forEach( (j) => { %>
+                            <% if(i._id == j.cart) { %>
+
+                                <tr>
+                                    <td>
+                                        <%= i.name %>
+                                    </td>
+                                    <td>
+                                        <img style="width: 50px;" src="/<%= i.images[0] %>" alt="">
+                                    </td>
+                                    <td>
+                                        <span style="padding-left: 20px;">
+                                <%= j.count %>
+                            </span>
+                                    </td>
+                                    <td>
+                                        <%= i.saleCost %>
+                                    </td>
+                                    <td>
+                                        <%= i.saleCost * j.count  %>
+                                    </td>
+
+                                </tr>
+                                <% } %>
+                                    <% }) %>
+                                        <% }) %>
+
+                                            <tr>
+                                                <td style="background: #333; color: white;">
+                                                    Tổng cộng :
+                                                </td>
+                                                <td>
+                                                    <%= total_order[0].saleTotal %>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="height: 50px;"></div>
+    </div>
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area d-flex mb-30">
+                        <!-- Logo -->
+                        <div class="footer-logo mr-50">
+                            <a href="#"><img src="/resource/img/core-img/logo2.png" alt=""></a>
+                        </div>
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="/shop/product">Sho p</a></li>
+                                <li><a href="/shop/blog">Blog</a></li>
+                                <li><a href="/shop/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area mb-30">
+                        <ul class="footer_widget_menu">
+                            <li><a href="#">Order Status</a></li>
+                            <li><a href="#">Payment Options</a></li>
+                            <li><a href="#">Shipping and Delivery</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-end">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area">
+                        <div class="footer_heading mb-30">
+                            <h6>Subscribe</h6>
+                        </div>
+                        <div class="subscribtion_form">
+                            <form action="#" method="post">
+                                <input type="email" name="mail" class="mail" placeholder="Your email here">
+                                <button type="submit" class="submit"><i class="fa fa-long-arrow-right"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area">
+                        <div class="footer_social_area">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i
+                                    class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i
+                                    class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i
+                                    class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i
+                                    class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i
+                                    class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="/resource/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/resource/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/resource/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="/resource/js/plugins.js"></script>
+    <!-- Classy Nav js -->
+    <script src="/resource/js/classy-nav.min.js"></script>
+    <!-- Active js -->
+    <script src="/resource/js/active.js"></script>
+
+</body>
+
+</html>
